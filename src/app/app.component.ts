@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Barley } from './barley';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +9,7 @@ export class AppComponent {
   title = 'moissonLive';
 
 
+  constructor() {}
+
+  ngOnInit() {}
 }
