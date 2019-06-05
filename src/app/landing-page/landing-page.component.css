@@ -7,8 +7,26 @@
 
 h1{
     font-family: "Montserrat";
+    color: #5a9449;
+    font-weight: bold;
 }
 
 p{
     font-family: "Open Sans";
+    font-weight: bold;
+    color: #565656;
+    font-size: 120%;
+}
+
+button{
+    background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	color:#f8f8f8;
+    padding:17px 33px;
+    font-size: 140%;
+}
+
+button:hover{
+    background-color:#5cbf2a;
 }
