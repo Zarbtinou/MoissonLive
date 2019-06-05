@@ -1,2 +1,5 @@
-export class Rapeseed {
+import { Cereals } from './cereals';
+
+export class Rapeseed extends Cereals{
+  specificWeight:number;
 }
