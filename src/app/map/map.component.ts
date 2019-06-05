@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
 
 import * as L from 'leaflet';
-import { CornService } from '../corn.service';
-import { Corn } from '../corn';
+import { CornService } from '../services/corn.service';
+import { Corn } from '../class/corn';
 
 @Component({
   selector: 'app-map',
@@ -41,7 +41,6 @@ export class MapComponent implements OnInit {
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
     this.corn.forEach(podotactile => {
-      console.log("************************************************");
       L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(myfrugalmap);
     });
 

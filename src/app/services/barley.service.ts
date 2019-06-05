@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Barley } from './barley';
+import { Barley } from '../class/barley';
 
 @Injectable({
   providedIn: 'root'
