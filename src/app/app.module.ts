@@ -10,13 +10,17 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MapComponent } from './map/map.component';
+import { ResultsComponent } from './results/results.component';
+import { ComparisonComponent } from './comparison/comparison.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     NavbarComponent,
-    MapComponent
+    MapComponent,
+    ResultsComponent,
+    ComparisonComponent
   ],
   imports: [
     BrowserModule,
