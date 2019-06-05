@@ -5,5 +5,10 @@
     line-height: 4em;
 }
 
+h1{
+    font-family: "Montserrat";
+}
 
-
+p{
+    font-family: "Open Sans";
+}

@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face{
+    font-family: "Montserrat";
+    src: url('assets/Montserrat-Medium.ttf');
+}
+
+body{
+    background-image: url("assets/blé.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
