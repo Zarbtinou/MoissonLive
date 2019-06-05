@@ -2,3 +2,9 @@
     font-family: "Montserrat";
     src: url('assets/Montserrat-Medium.ttf');
 }
+
+body{
+    background-image: url("assets/blé.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
