@@ -1,2 +1,127 @@
 <app-navbar class="col-12"></app-navbar>
-<p>Formulaire</p>
+<form method="post">
+    <p>
+            PARTAGEZ VOS RÉSULTATS
+            <br/> <br/>
+            Participez à la carte de la moisson en vous inscrivant ci-dessous.
+            <br/> <br/>
+            *Obligatoire
+    </p>
+    <br/>
+    <div>
+        <label for="postal">CODE POSTAL (ex: 28200) *</label>
+        <input type="text" name="postal">
+    </div>
+    <div>
+        <label for="commune">COMMUNE (ex: CHATEAUDUN) *</label>
+        <input type="text" name="commune">
+    </div>
+    <div>
+        <label for="culture">CULTURE *</label>
+        <br />
+        <select>
+            <option>Sélectionner</option>
+            <option>Maïs</option>
+            <option>Tournesol</option>
+        </select>
+    </div>
+    <div>
+        <label for="variété">VARIETE</label>
+        <br />
+        <input type="text" name="variété">
+    </div>
+    <div>
+        <label for="rendement">RENDEMENT en QUINTAUX *</label>
+        <input type="text" name="rendement">
+    </div>
+    <div>
+        <label for="humidité">HUMIDITE *</label>
+        <br />
+        <input type="text" name="humidité">
+    </div>
+    <div>
+        <label for="irrigué">MAÏS IRRIGUE</label>
+        <input type="checkbox" name="yes">
+        <label for="scales">Oui</label>
+        <input type="checkbox" name="non">
+        <label for="horns">Non</label>
+    </div>
+    <div>
+        <label for="culture">RÉSULTATS PAR RAPPORT A LA MOYENNE DES 5 DERNIÈRES ANNÉES *</label>
+        <br />
+        <select>
+            <option>Nettement inférieur à la moyenne</option>
+            <option>Inférieur à la moyenne</option>
+            <option>Moyen</option>
+            <option>Supérieur à la moyenne</option>
+            <option>Nettement supérieur à la moyenne</option>
+        </select>
+    </div>
+    <div>
+        <label for="rendement">QUANTITE D'AZOTE APPORTEE ? (en unités) *</label>
+        <input type="text" name="azote">
+    </div>
+    <div>
+        <label for="irrigué">SOUS QUELLE FORME ? *</label>
+        <input type="checkbox">
+        <label for="scales">Solution Azotée</label>
+        <input type="checkbox">
+        <label for="scales">Ammonitrate</label>
+        <input type="checkbox">
+        <label for="scales">Urée 46</label>
+        <input type="checkbox">
+        <label for="scales">Autre</label>
+        <input type="text" name="autre">
+    </div>
+    <div>
+        <label for="culture">TECHNIQUE CULTURALE *</label>
+        <br />
+        <select>
+            <option>Conventionnelle</option>
+            <option>TCS</option>
+            <option>Agriculture biologique</option>
+        </select>
+    </div>
+    <div>
+        <label for="comment">Un commentaire, infos supplémentaires ?</label>
+        <input type="text" name="comment">
+    </div>
+    <div>
+        <label for="comment">VOTRE EMAIL *</label>
+        <input type="text" name="email">
+    </div>
+    <div>
+        <label for="phone">VOTRE N° DE TELEPHONE MOBILE</label>
+        <input type="text" name="phone">
+    </div>
+    <div>
+        <label for="culture">Quel est votre prix objectif de vente en maïs ?</label>
+        <br />
+        <select>
+            <option>150</option>
+            <option>160</option>
+            <option>170</option>
+            <option>180</option>
+            <option>190</option>
+            <option>200</option>
+            <option>210</option>
+            <option>220</option>
+        </select>
+    </div>
+    <div>
+        <label for="culture">Quel est votre prix objectif de vente en tournesol ?</label>
+        <br />
+        <select>
+            <option>270</option>
+            <option>280</option>
+            <option>290</option>
+            <option>300</option>
+            <option>310</option>
+            <option>320</option>
+            <option>330</option>
+            <option>340</option>
+            <option>350</option>
+        </select>
+    </div>
+    <button type="submit"> Envoyer </button>
+</form>
