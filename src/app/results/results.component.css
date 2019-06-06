@@ -9,3 +9,11 @@
 legend {
     text-align: center;
 }
+.red{
+  color: #e4454d;
+}
+
+.navBar {
+    padding: 0;
+    margin: 0;
+}
