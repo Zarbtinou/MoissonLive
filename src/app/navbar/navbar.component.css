@@ -2,3 +2,6 @@ nav ul li{
  margin:0 60px; 
 }
 
+.navbar-brand{
+    color: #5a9449;
+}
