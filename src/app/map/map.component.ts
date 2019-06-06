@@ -110,37 +110,13 @@ export class MapComponent implements OnInit {
 
 
   public generateMap(param) {
-    console.log(param);
 
-//Configuration carte
-
-    $('#locate-position').on('click', function () {
-      this.map.locate({ setView: true, maxZoom: 15 });
-    });
-
-    function onLocationFound(e) {
-      var radius = e.accuracy / 2;
-      L.marker(e.latlng).addTo(this.map)
-        .on('click', function () {
-          confirm("are you sure?");
-        });
-//.bindPopup("You are within " + radius + " meters from this point").openPopup();
-      L.circle(e.latlng, radius).addTo(this.map);
-    }
-
-    this.map.on('locationfound', onLocationFound);
-
-    function onLocationError(e) {
-      alert(e.message);
-    }
-    this.map.on('locationerror', onLocationError);
-
-// Fonds de carte
+    // Fonds de carte
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Moisson Live'
     }).addTo(this.map);
 
-// Configuration icone marqueur
+    // Configuration icone marqueur
     const myIconBarley = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
@@ -159,10 +135,10 @@ export class MapComponent implements OnInit {
 
 
     for (let i = 0; i < param.length; i++) {
-// Config popup ( a mettre dans la boucle )
-      let text: string = param[i].variety+" / "+param[i].email;
+      // Config popup ( a mettre dans la boucle )
+      let text: string = param[i].variety + " / " + param[i].email;
       console.log(text);
-// Ajout marqueur
+      // Ajout marqueur
       if (param[i]['@type'] == "BarleyObservation") {
 
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconBarley }).bindPopup(text).addTo(this.map);
@@ -176,10 +152,31 @@ export class MapComponent implements OnInit {
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconRapeSeed }).bindPopup(text).addTo(this.map);
       }
     }
-
-
+    this.locateButton(this.map);
   };
 
+  locateButton(param_map) {
+    $('#locate-position').on('click', function () {
+      param_map.locate({ setView: true, maxZoom: 15 });
+    });
+
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      L.marker(e.latlng).addTo(param_map)
+        .on('click', function () {
+          confirm("are you sure?");
+        });
+      //.bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.circle(e.latlng, radius).addTo(param_map);
+    }
+
+    param_map.on('locationfound', onLocationFound);
+
+    function onLocationError(e) {
+      alert(e.message);
+    }
+    param_map.on('locationerror', onLocationError);
+  }
 
 }
 
