@@ -20,7 +20,7 @@ import { WheatService } from '../services/wheat.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
+
   corn: Corn[];
   serviceCorn: CornService;
 
@@ -36,13 +36,7 @@ export class MapComponent implements OnInit {
   wheat: Wheat[];
   serviceWheat: WheatService;
 
-  grosfichier: Cereals[];
-
-  bool1: boolean;
-  bool2: boolean;
-  bool3: boolean;
-  bool4: boolean;
-  bool5: boolean;
+  map: any;
 
 
   constructor(wheatService: WheatService, rapeseedService: RapeseedService, cornService: CornService, sunflowerService: SunflowerService, barleyService: BarleyService) {
@@ -60,22 +54,17 @@ export class MapComponent implements OnInit {
 
     this.wheat = [];
     this.serviceWheat = wheatService;
-
-    this.grosfichier = [];
   }
 
-  // Fonction d'initialisation du composant.
+
   ngOnInit() {
-    // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom.
+
     this.serviceCorn.getAll().subscribe(
       (tabOfCorn: Corn[]) => {
         this.corn = tabOfCorn;
         let tmp: Cereals[] = [];
         tmp = <Cereals[]>this.corn;
-        this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("CORN" + this.grosfichier)
-        this.bool1 = true;
-        this.bite();
+        this.generateMap(tmp);
       }
     );
 
@@ -84,10 +73,7 @@ export class MapComponent implements OnInit {
         this.barley = tabOfBarley;
         let tmp: Cereals[] = [];
         tmp = <Cereals[]>this.barley;
-        this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("BARLEY" + this.grosfichier)
-        this.bool2 = true;
-        this.bite();
+        this.generateMap(tmp);
       }
     );
 
@@ -96,10 +82,7 @@ export class MapComponent implements OnInit {
         this.sunflower = tabOfSunflower;
         let tmp: Cereals[] = [];
         tmp = <Cereals[]>this.sunflower;
-        this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("sunflower" + this.grosfichier);
-        this.bool3 = true;
-        this.bite();
+        this.generateMap(tmp);
       }
     );
 
@@ -108,10 +91,7 @@ export class MapComponent implements OnInit {
         this.rapeseed = tabOfRapeseed;
         let tmp: Cereals[] = [];
         tmp = <Cereals[]>this.rapeseed;
-        this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("Rapeseed" + this.grosfichier);
-        this.bool4 = true;
-        this.bite();
+        this.generateMap(tmp);
       }
     );
 
@@ -120,50 +100,27 @@ export class MapComponent implements OnInit {
         this.wheat = tabOfWheat;
         let tmp: Cereals[] = [];
         tmp = <Cereals[]>this.wheat;
-        this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("WHEAT" + this.grosfichier);
-        this.bool5 = true;
-        this.bite();
+        this.generateMap(tmp);
       }
     );
+    this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
   }
-public bite() {
-  if (this.bool1 && this.bool2 && this.bool3 && this.bool4 && this.bool5) {
-    this.generateMap(this.grosfichier)
-  }
-}
+
+
+
+
   public generateMap(param) {
 
-    const map = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
-    $('#locate-position').on('click', function(){
-      map.locate({setView: true, maxZoom: 15});
-    });
-    
-    function onLocationFound(e) {
-        var radius = e.accuracy / 2;
-        L.marker(e.latlng).addTo(map)
-            .on('click', function(){
-              confirm("are you sure?");
-            });
-            //.bindPopup("You are within " + radius + " meters from this point").openPopup();
-        L.circle(e.latlng, radius).addTo(map);
-    }
-    
-    map.on('locationfound', onLocationFound);
-    
-    function onLocationError(e) {
-        alert(e.message);
-    }
-    map.on('locationerror', onLocationError);
-
+    // Fonds de carte
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: 'Frugal Map'
-    }).addTo(map);
+      attribution: 'Moisson Live'
+    }).addTo(this.map);
 
+    // Configuration icone marqueur
     const myIconBarley = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
-    const myIconGrapeSeed = L.icon({
+    const myIconRapeSeed = L.icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
     });
     const myIconSunflowers = L.icon({
@@ -175,14 +132,55 @@ public bite() {
     const myIconWheat = L.icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png'
     });
-    param.forEach(podotactile => {
-      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIconBarley }).addTo(map);
+
+
+    for (let i = 0; i < param.length; i++) {
+      // Config popup ( a mettre dans la boucle )
+      let text: string = param[i].variety + " / " + param[i].email;
+      console.log(text);
+      // Ajout marqueur
+      if (param[i]['@type'] == "BarleyObservation") {
+
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconBarley }).bindPopup(text).addTo(this.map);
+      } else if (param[i]['@type'] == "CornObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconCorn }).bindPopup(text).addTo(this.map);
+      } else if (param[i]['@type'] == "SunflowerObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconSunflowers }).bindPopup(text).addTo(this.map);
+      } else if (param[i]['@type'] == "WheatObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconWheat }).bindPopup(text).addTo(this.map);
+      } else if (param[i]['@type'] == "RapeseedObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconRapeSeed }).bindPopup(text).addTo(this.map);
+      }
+    }
+    this.locateButton(this.map);
+  };
+
+  locateButton(param_map) {
+    $('#locate-position').on('click', function () {
+      param_map.locate({ setView: true, maxZoom: 15 });
     });
 
-
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      L.marker(e.latlng).addTo(param_map)
+        .on('click', function () {
+          confirm("are you sure?");
+        });
+      //.bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.circle(e.latlng, radius).addTo(param_map);
     }
-  
 
-  
+    param_map.on('locationfound', onLocationFound);
+
+    function onLocationError(e) {
+      alert(e.message);
+    }
+    param_map.on('locationerror', onLocationError);
+  }
+
 }
+
+
+
+
 
