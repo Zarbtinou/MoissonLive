@@ -1,7 +1,6 @@
 .title{
     color: #5a9449;
     font-weight: bold;
-    text-align: left;
 }
 
 .navbar{
@@ -13,4 +12,17 @@ img{
     width: 32px;
     margin-bottom: 5%;
 }
-  
+
+ul, li{
+    margin: 0 60px;
+}
+
+@media screen and (min-width: 200px) and (max-width: 640px){
+    ul, li{
+      margin: 0;
+    }
+    h1{
+        font-size: 160%;
+        margin-top: 4%;
+    }
+}
