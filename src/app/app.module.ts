@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormsModule } from '@angular/forms';
 
@@ -14,8 +13,7 @@ import { MapComponent } from './map/map.component';
 import { ResultsComponent } from './results/results.component';
 import { ComparisonComponent } from './comparison/comparison.component';
 import { FooterComponent } from './footer/footer.component';
-
-
+import { GraphService } from './graph.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +27,10 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
   ],
-  providers: [
-    
-  ],
+  providers: [GraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

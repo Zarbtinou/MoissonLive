@@ -1,7 +1,6 @@
 <app-navbar class="col-12 navBar"></app-navbar>
-<div class="sign-up offset-3 col-6">
-    <p>Recevez par mail tous les résultats : Rendements, qualités, apports d'azote, ... par culture et par secteur.</p>
-    <input type="text" name="mail" value="Adresse e-mail" class="col-12">
-    <div><button class="col-12">S'enregistrer pour recevoir les résultats</button></div>
-</div>
+
+<div *ngIf="chart">
+    <canvas id="canvas">{{ chart }}</canvas>
+  </div>
 <app-footer></app-footer>
