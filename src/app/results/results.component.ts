@@ -3,6 +3,7 @@ import { Cereals } from '../class/cereals';
 import { PostResultsService } from '../services/post-results.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-results',
