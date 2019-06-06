@@ -9,6 +9,10 @@ import { SunflowerService } from '../services/sunflower.service';
 import { Cereals } from '../class/cereals';
 import { Barley } from '../class/barley';
 import { BarleyService } from '../services/barley.service';
+import { Rapeseed } from '../class/rapeseed';
+import { RapeseedService } from '../services/rapeseed.service';
+import { Wheat } from '../class/wheat';
+import { WheatService } from '../services/wheat.service';
 
 @Component({
   selector: 'app-map',
@@ -25,14 +29,22 @@ export class MapComponent implements OnInit {
   barley: Barley[];
   serviceBarley: BarleyService;
 
+  rapeseed: Rapeseed[];
+  serviceRapeseed: RapeseedService;
+
+  wheat: Wheat[];
+  serviceWheat: WheatService;
+
   grosfichier: Cereals[];
 
   bool1: boolean;
   bool2: boolean;
   bool3: boolean;
+  bool4: boolean;
+  bool5: boolean;
 
 
-  constructor(cornService: CornService, sunflowerService: SunflowerService, barleyService: BarleyService) {
+  constructor(wheatService: WheatService, rapeseedService: RapeseedService, cornService: CornService, sunflowerService: SunflowerService, barleyService: BarleyService) {
     this.corn = [];
     this.serviceCorn = cornService;
 
@@ -41,6 +53,12 @@ export class MapComponent implements OnInit {
 
     this.barley = [];
     this.serviceBarley = barleyService;
+
+    this.rapeseed = [];
+    this.serviceRapeseed = rapeseedService;
+
+    this.wheat = [];
+    this.serviceWheat = wheatService;
 
     this.grosfichier = [];
   }
@@ -83,10 +101,34 @@ export class MapComponent implements OnInit {
         this.generateMap(this.grosfichier);
       }
     );
+
+    this.serviceRapeseed.getAll().subscribe(
+      (tabOfRapeseed: Rapeseed[]) => {
+        this.rapeseed = tabOfRapeseed;
+        let tmp: Cereals[] = [];
+        tmp = <Cereals[]>this.rapeseed;
+        this.grosfichier = this.grosfichier.concat(tmp);
+        console.log("Rapeseed" + this.grosfichier);
+        this.bool4 = true;
+        this.generateMap(this.grosfichier);
+      }
+    );
+
+    this.serviceWheat.getAll().subscribe(
+      (tabOfWheat: Wheat[]) => {
+        this.wheat = tabOfWheat;
+        let tmp: Cereals[] = [];
+        tmp = <Cereals[]>this.wheat;
+        this.grosfichier = this.grosfichier.concat(tmp);
+        console.log("WHEAT" + this.grosfichier);
+        this.bool5 = true;
+        this.generateMap(this.grosfichier);
+      }
+    );
   }
 
   public generateMap(param) {
-    if (this.bool1 && this.bool2 && this.bool3) {
+    if (this.bool1 && this.bool2 && this.bool3 && this.bool4 && this.bool5) {
       const myfrugalmap = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
 
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
