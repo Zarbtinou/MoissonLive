@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-
+import $ from '../../../node_modules/jquery';
 import * as L from 'leaflet';
 import { CornService } from '../services/corn.service';
 import { Corn } from '../class/corn';
@@ -16,6 +16,7 @@ import { BarleyService } from '../services/barley.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  
   corn: Corn[];
   serviceCorn: CornService;
 
@@ -82,19 +83,41 @@ export class MapComponent implements OnInit {
 
 
   public generateMap(param) {
-    const myfrugalmap = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
+    const map = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
+    $('#locate-position').on('click', function(){
+      map.locate({setView: true, maxZoom: 15});
+    });
+    
+    function onLocationFound(e) {
+        var radius = e.accuracy / 2;
+        L.marker(e.latlng).addTo(map)
+            .on('click', function(){
+              confirm("are you sure?");
+            });
+            //.bindPopup("You are within " + radius + " meters from this point").openPopup();
+        L.circle(e.latlng, radius).addTo(map);
+    }
+    
+    map.on('locationfound', onLocationFound);
+    
+    function onLocationError(e) {
+        alert(e.message);
+    }
+    map.on('locationerror', onLocationError);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Frugal Map'
-    }).addTo(myfrugalmap);
+    }).addTo(map);
 
     const myIcon = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
     param.forEach(podotactile => {
-      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(myfrugalmap);
+      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(map);
     });
 
   }
+
+  
 }
 
