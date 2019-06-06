@@ -7,6 +7,8 @@ import { Corn } from '../class/corn';
 import { Sunflower } from '../class/sunflower';
 import { SunflowerService } from '../services/sunflower.service';
 import { Cereals } from '../class/cereals';
+import { Barley } from '../class/barley';
+import { BarleyService } from '../services/barley.service';
 
 @Component({
   selector: 'app-map',
@@ -20,15 +22,21 @@ export class MapComponent implements OnInit {
   sunflower: Sunflower[];
   serviceSunflower: SunflowerService;
 
+  barley: Barley[];
+  serviceBarley: BarleyService;
+
   grosfichier: Cereals[];
 
 
-  constructor(cornService: CornService, sunflowerService: SunflowerService) {
+  constructor(cornService: CornService, sunflowerService: SunflowerService, barleyService: BarleyService) {
     this.corn = [];
     this.serviceCorn = cornService;
 
     this.sunflower = [];
     this.serviceSunflower = sunflowerService;
+
+    this.barley = [];
+    this.serviceBarley = barleyService;
 
     this.grosfichier = [];
   }
@@ -42,6 +50,17 @@ export class MapComponent implements OnInit {
         let tmp : Cereals[] = [];
         tmp = <Cereals[]> this.corn;
         this.grosfichier = this.grosfichier.concat(tmp);
+        console.log("CORN"+this.grosfichier)
+      }
+    );
+
+    this.serviceBarley.getAll().subscribe(
+      (tabOfBarley: Barley[]) => {
+        this.barley = tabOfBarley;
+        let tmp : Cereals[] = [];
+        tmp = <Cereals[]> this.barley;
+        this.grosfichier = this.grosfichier.concat(tmp);
+        console.log("BARLEY"+this.grosfichier)
       }
     );
 
@@ -51,13 +70,19 @@ export class MapComponent implements OnInit {
         let tmp : Cereals[] = [];
         tmp = <Cereals[]> this.sunflower;
         this.grosfichier = this.grosfichier.concat(tmp);
+        console.log("sunflower"+this.grosfichier);
         this.generateMap(this.grosfichier);
       }
+
     );
+
+
   }
 
+
+
   public generateMap(param) {
-    const myfrugalmap = L.map('frugalmap').setView([50.6311634, 3.0599573], 12);
+    const myfrugalmap = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Frugal Map'
