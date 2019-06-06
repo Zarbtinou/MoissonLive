@@ -160,12 +160,27 @@ public bite() {
       attribution: 'Frugal Map'
     }).addTo(map);
 
-    const myIcon = L.icon({
+    const myIconBarley = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
+<<<<<<< HEAD
     console.log(param);
+=======
+    const myIconGrapeSeed = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
+    });
+    const myIconSunflowers = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png'
+    });
+    const myIconCorn = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png'
+    });
+    const myIconWheat = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png'
+    });
+>>>>>>> 5e734f207f4d1f5eb193c0e3635ed3f8cb5e5d6e
     param.forEach(podotactile => {
-      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(map);
+      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIconBarley }).addTo(map);
     });
 
 
