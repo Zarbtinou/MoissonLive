@@ -1,0 +1,32 @@
+.sign-up{
+    border: 1px solid green;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+button{
+    background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	color:#f8f8f8;
+    padding:7px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+button:hover{
+    background-color:#5cbf2a;
+}
+
+input{
+    padding:6px;
+}
+
+p{
+    margin-top: 1%;
+}
+
+.navBar {
+    padding: 0;
+    margin: 0;
+  }

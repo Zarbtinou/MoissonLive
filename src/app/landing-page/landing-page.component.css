@@ -2,13 +2,13 @@
     text-align: center;
     margin-top: 50vh;
     transform: translateY(-50%);
-    line-height: 4em;
 }
 
 h1{
     font-family: "Montserrat";
     color: #5a9449;
     font-weight: bold;
+    margin-bottom: 2%;
 }
 
 p{
@@ -16,17 +16,26 @@ p{
     font-weight: bold;
     color: #565656;
     font-size: 120%;
+    margin-top: 2%;
+    margin-bottom: 1%;
 }
 
 button{
-    background-color:#44c767;
+    background-color:#5a9449;
 	border-radius:28px;
-	border:1px solid #18ab29;
+	border:1px solid #2a2a2a;
 	color:#f8f8f8;
     padding:17px 33px;
     font-size: 140%;
+    margin-top: 2%;
 }
 
 button:hover{
-    background-color:#5cbf2a;
+    background-color:#5a9449;
+    opacity: 0.8;
+}
+
+.icone{
+    height: 30px;
+    width: 40px;
 }
