@@ -1,4 +1,9 @@
 #frugalmap {
-    height: 70vh;
+    height: 78vh;
   width: 100% 
+}
+
+.navBar {
+  padding: 0;
+  margin: 0;
 }
