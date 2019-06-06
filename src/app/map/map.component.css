@@ -1,4 +1,17 @@
 #frugalmap {
     height: 70vh;
-  width: 100% 
+  width: 100% ;
+}
+
+button{
+  width: 2.1em;
+  height: 2em;
+  margin-left: 1.30vh;
+  margin-top: 9vh;
+  border: 2px solid rgb(146, 145, 145);
+  background: url("https://cdn.pixabay.com/photo/2017/01/10/03/54/icon-1968240_960_720.png") ;
+  background-size: 100%;
+
+  
+  
 }
