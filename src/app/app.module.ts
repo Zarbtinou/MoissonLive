@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MapComponent } from './map/map.component';
 import { ResultsComponent } from './results/results.component';
 import { ComparisonComponent } from './comparison/comparison.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ComparisonComponent } from './comparison/comparison.component';
     NavbarComponent,
     MapComponent,
     ResultsComponent,
-    ComparisonComponent
+    ComparisonComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
