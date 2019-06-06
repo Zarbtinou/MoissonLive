@@ -15,7 +15,8 @@ export class Cereals {
   coordinates: {
     latitude:number;
     longitude:number;
-  }
+  };
+  specificWeight?:number;
 
 }
 
