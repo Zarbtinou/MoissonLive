@@ -7,12 +7,10 @@
 button{
   width: 2.1em;
   height: 2em;
-  margin-left: 1.30vh;
-  margin-top: 9vh;
-  border: 2px solid rgb(146, 145, 145);
+  border: 2px solid #a1a1a1;
+  border-radius: 5%;
   background: url("https://cdn.pixabay.com/photo/2017/01/10/03/54/icon-1968240_960_720.png") ;
   background-size: 100%;
-
 }
 
 
@@ -21,3 +19,9 @@ button{
   margin: 0;
 }
 
+.float{
+  float: left;
+  margin-left: 0.7%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}

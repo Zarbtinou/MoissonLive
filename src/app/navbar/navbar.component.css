@@ -1,16 +1,16 @@
-nav ul li{
- margin:0 60px; 
-}
-
-
-
 .title{
     color: #5a9449;
-    display: inline-block;
+    font-weight: bold;
+    text-align: left;
 }
 
 .navbar{
-    justify-content: center;
-    /* align-content: center; */
-    /* align-items: center;  */
-} 
+    background-color: #565656;
+}
+
+img{
+    height: 32px;
+    width: 32px;
+    margin-bottom: 5%;
+}
+  
