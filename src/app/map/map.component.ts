@@ -20,7 +20,7 @@ import { WheatService } from '../services/wheat.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
+
   corn: Corn[];
   serviceCorn: CornService;
 
@@ -138,7 +138,7 @@ public bite() {
     $('#locate-position').on('click', function(){
       map.locate({setView: true, maxZoom: 15});
     });
-    
+
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
         L.marker(e.latlng).addTo(map)
@@ -148,9 +148,9 @@ public bite() {
             //.bindPopup("You are within " + radius + " meters from this point").openPopup();
         L.circle(e.latlng, radius).addTo(map);
     }
-    
+
     map.on('locationfound', onLocationFound);
-    
+
     function onLocationError(e) {
         alert(e.message);
     }
@@ -163,14 +163,15 @@ public bite() {
     const myIcon = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
+    console.log(param);
     param.forEach(podotactile => {
       L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(map);
     });
 
 
     }
-  
 
-  
+
+
 }
 
