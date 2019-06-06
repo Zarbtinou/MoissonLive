@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
         this.grosfichier = this.grosfichier.concat(tmp);
         console.log("CORN" + this.grosfichier)
         this.bool1 = true;
-        this.bite();
+        this.checkedAllConcat();
       }
     );
 
@@ -87,7 +87,7 @@ export class MapComponent implements OnInit {
         this.grosfichier = this.grosfichier.concat(tmp);
         console.log("BARLEY" + this.grosfichier)
         this.bool2 = true;
-        this.bite();
+        this.checkedAllConcat();
       }
     );
 
@@ -99,7 +99,7 @@ export class MapComponent implements OnInit {
         this.grosfichier = this.grosfichier.concat(tmp);
         console.log("sunflower" + this.grosfichier);
         this.bool3 = true;
-        this.bite();
+        this.checkedAllConcat();
       }
     );
 
@@ -111,7 +111,7 @@ export class MapComponent implements OnInit {
         this.grosfichier = this.grosfichier.concat(tmp);
         console.log("Rapeseed" + this.grosfichier);
         this.bool4 = true;
-        this.bite();
+        this.checkedAllConcat();
       }
     );
 
@@ -123,49 +123,52 @@ export class MapComponent implements OnInit {
         this.grosfichier = this.grosfichier.concat(tmp);
         console.log("WHEAT" + this.grosfichier);
         this.bool5 = true;
-        this.bite();
+        this.checkedAllConcat();
       }
     );
   }
-public bite() {
-  if (this.bool1 && this.bool2 && this.bool3 && this.bool4 && this.bool5) {
-    this.generateMap(this.grosfichier)
+  public checkedAllConcat() {
+    if (this.bool1 && this.bool2 && this.bool3 && this.bool4 && this.bool5) {
+      this.generateMap(this.grosfichier)
+    }
   }
-}
   public generateMap(param) {
-
+    console.log(param);
+    //Appel et configuration carte
     const map = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
-    $('#locate-position').on('click', function(){
-      map.locate({setView: true, maxZoom: 15});
+
+
+    $('#locate-position').on('click', function () {
+      map.locate({ setView: true, maxZoom: 15 });
     });
 
     function onLocationFound(e) {
-        var radius = e.accuracy / 2;
-        L.marker(e.latlng).addTo(map)
-            .on('click', function(){
-              confirm("are you sure?");
-            });
-            //.bindPopup("You are within " + radius + " meters from this point").openPopup();
-        L.circle(e.latlng, radius).addTo(map);
+      var radius = e.accuracy / 2;
+      L.marker(e.latlng).addTo(map)
+        .on('click', function () {
+          confirm("are you sure?");
+        });
+      //.bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.circle(e.latlng, radius).addTo(map);
     }
 
     map.on('locationfound', onLocationFound);
 
     function onLocationError(e) {
-        alert(e.message);
+      alert(e.message);
     }
     map.on('locationerror', onLocationError);
 
+    // Fonds de carte
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Frugal Map'
     }).addTo(map);
 
+
+    // Configuration icone marqueur
     const myIconBarley = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
-<<<<<<< HEAD
-    console.log(param);
-=======
     const myIconGrapeSeed = L.icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
     });
@@ -178,15 +181,33 @@ public bite() {
     const myIconWheat = L.icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png'
     });
->>>>>>> 5e734f207f4d1f5eb193c0e3635ed3f8cb5e5d6e
-    param.forEach(podotactile => {
-      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIconBarley }).addTo(map);
-    });
 
 
+    for (let i = 0; i < param.length; i++) {
+      // Config popup ( a mettre dans la boucle )
+      let text: string = param[i].variety;
+      // Ajout marqueur
+      if (param[i]['@type'] == "BarleyObservation") {
+
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconBarley }).bindPopup(text).addTo(map);
+      } else if (param[i]['@type'] == "CornObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconCorn }).bindPopup(text).addTo(map);
+      } else if (param[i]['@type'] == "SunflowerObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconSunflowers }).bindPopup(text).addTo(map);
+      } else if (param[i]['@type'] == "WheatObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconWheat }).bindPopup(text).addTo(map);
+      } else if (param[i]['@type'] == "GrapeObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconGrapeSeed }).bindPopup(text).addTo(map);
+      }
     }
 
 
+  };
+
 
 }
+
+
+
+
 
