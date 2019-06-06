@@ -2,10 +2,10 @@
 <h1 class="title">Partagez vos résultats de récolte</h1>
 <legend>Participez à la carte de la moisson en vous inscrivant ci-dessous.</legend>
 <div class="row custom-row">
-    <div class="offset-1 col-sm-5 custom-container ">
 
-        <form class="form-horizontal form" [formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
-            <fieldset>
+    <form class="form-horizontal form" [formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
+        <fieldset>
+            <div class="offset-1 col-sm-5 custom-container ">
                 <p *ngIf="dataSaved && resultsForm.pristine" ngClass="success">
                     results created successfully.
                 </p>
@@ -31,6 +31,17 @@
                         <option value="colza">Colza</option>
                     </select>
                 </div>
+            </div>
+            <div class="offset-1 col-sm-5 custom-container ">
+                <div class="form-group">
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputRendQuint" class="col-12">Rendement en quintaux :</label>
+                    <input type="number" name="inputRendQuint-result" placeholder="    Ex: 32">
+                </div>
 
                 <div class="form-group">
                     <label for="inputVariety" class="col-12">Variété :</label>
@@ -42,25 +53,30 @@
                     <input type="text" name="inputVariety-result" placeholder="    Variété...">
                 </div>
 
-
-
-                <!--- Terms and conditions Block --->
-                <div class="form-group checkbox">
-                    <label>
-                        <input type="checkbox"> Confirm that you've read the Terms and
-                        Conditions
-                    </label>
-                </div>
-
-                <!--- Buttons Block --->
                 <div class="form-group">
-                    <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
                 </div>
-            </fieldset>
-        </form>
-    </div>
+
+            </div>
+
+            <!--- Terms and conditions Block --->
+            <div class="form-group checkbox">
+                <label>
+                    <input type="checkbox"> Confirm that you've read the Terms and
+                    Conditions
+                </label>
+            </div>
+
+            <!--- Buttons Block --->
+            <div class="form-group">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
 </div>
+
 
 <app-footer></app-footer>
 

@@ -64,40 +64,40 @@ export class ResultsComponent implements OnInit {
   }
 
   resultSaved() {
-    let result: Cereals = {
-      specificWeight: 72,
-      email: "julienauvray@gmail.com",
-      phone: "+33600000000",
-      variety: "super barley",
-      yield: 83.2,
-      humidity: 99.5,
-      yieldNotation: 5,
-      nitrogenQuantityUsed: 5.2,
-      nitrogenProductUsed: "Solution for all ur probs",
-      comment: "This is a short commentary.",
-      cultivationMethod: "conventional",
-      targetPrice: 120.5,
-      place: "Madison square park",
-      coordinates: {
-        latitude: 48.3667,
-        longitude: 1.0130
-      }
-    };
-    console.log(result);
-    this.postService.saveResult(result).subscribe(res => {
-      let tmp: Cereals = res;
-      console.log(tmp.email);
-    },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          //A client-side or network error occurred.
-          console.log('An error occurred:', err.error.message);
-        } else {
-          //Backend returns unsuccessful response codes such as 404, 500 etc.
-          console.log('Backend returned status code: ', err.status);
-          console.log('Response body:', err.error);
-        }
-      }
-    );
-  }
+    // let result: Cereals = {
+    //   specificWeight: 72,
+    //   email: "julienauvray@gmail.com",
+    //   phone: "+33600000000",
+    //   variety: "super barley",
+    //   yield: 83.2,
+    //   humidity: 99.5,
+    //   yieldNotation: 5,
+    //   nitrogenQuantityUsed: 5.2,
+    //   nitrogenProductUsed: "Solution for all ur probs",
+    //   comment: "This is a short commentary.",
+    //   cultivationMethod: "conventional",
+    //   targetPrice: 120.5,
+    //   place: "Madison square park",
+    //   coordinates: {
+    //     latitude: 48.3667,
+    //     longitude: 1.0130
+    //   }
+    // };
+    // console.log(result);
+    // this.postService.saveResult(result).subscribe(res => {
+    //   let tmp: Cereals = res;
+    //   console.log(tmp.email);
+    // },
+    //   (err: HttpErrorResponse) => {
+    //     if (err.error instanceof Error) {
+    //       //A client-side or network error occurred.
+    //       console.log('An error occurred:', err.error.message);
+    //     } else {
+    //       //Backend returns unsuccessful response codes such as 404, 500 etc.
+    //       console.log('Backend returned status code: ', err.status);
+    //       console.log('Response body:', err.error);
+    //     }
+    //   }
+    // );
+}
 }
