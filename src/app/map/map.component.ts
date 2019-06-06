@@ -27,6 +27,10 @@ export class MapComponent implements OnInit {
 
   grosfichier: Cereals[];
 
+  bool1: boolean;
+  bool2: boolean;
+  bool3: boolean;
+
 
   constructor(cornService: CornService, sunflowerService: SunflowerService, barleyService: BarleyService) {
     this.corn = [];
@@ -47,54 +51,56 @@ export class MapComponent implements OnInit {
     this.serviceCorn.getAll().subscribe(
       (tabOfCorn: Corn[]) => {
         this.corn = tabOfCorn;
-        let tmp : Cereals[] = [];
-        tmp = <Cereals[]> this.corn;
+        let tmp: Cereals[] = [];
+        tmp = <Cereals[]>this.corn;
         this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("CORN"+this.grosfichier)
+        console.log("CORN" + this.grosfichier)
+        this.bool1 = true;
+        this.generateMap(this.grosfichier);
       }
     );
 
     this.serviceBarley.getAll().subscribe(
       (tabOfBarley: Barley[]) => {
         this.barley = tabOfBarley;
-        let tmp : Cereals[] = [];
-        tmp = <Cereals[]> this.barley;
+        let tmp: Cereals[] = [];
+        tmp = <Cereals[]>this.barley;
         this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("BARLEY"+this.grosfichier)
+        console.log("BARLEY" + this.grosfichier)
+        this.bool2 = true;
+        this.generateMap(this.grosfichier);
       }
     );
 
     this.serviceSunflower.getAll().subscribe(
       (tabOfSunflower: Sunflower[]) => {
         this.sunflower = tabOfSunflower;
-        let tmp : Cereals[] = [];
-        tmp = <Cereals[]> this.sunflower;
+        let tmp: Cereals[] = [];
+        tmp = <Cereals[]>this.sunflower;
         this.grosfichier = this.grosfichier.concat(tmp);
-        console.log("sunflower"+this.grosfichier);
+        console.log("sunflower" + this.grosfichier);
+        this.bool3 = true;
         this.generateMap(this.grosfichier);
       }
-
     );
-
-
   }
 
-
-
   public generateMap(param) {
-    const myfrugalmap = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
+    if (this.bool1 && this.bool2 && this.bool3) {
+      const myfrugalmap = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: 'Frugal Map'
-    }).addTo(myfrugalmap);
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Frugal Map'
+      }).addTo(myfrugalmap);
 
-    const myIcon = L.icon({
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
-    });
-    param.forEach(podotactile => {
-      L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(myfrugalmap);
-    });
+      const myIcon = L.icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
+      });
+      param.forEach(podotactile => {
+        L.marker([podotactile.coordinates.latitude, podotactile.coordinates.longitude], { icon: myIcon }).addTo(myfrugalmap);
+      });
 
+    }
   }
 }
 
