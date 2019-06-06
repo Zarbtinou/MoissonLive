@@ -2,6 +2,15 @@ nav ul li{
  margin:0 60px; 
 }
 
-.navbar-brand{
+
+
+.title{
     color: #5a9449;
+    display: inline-block;
 }
+
+.navbar{
+    justify-content: center;
+    /* align-content: center; */
+    /* align-items: center;  */
+} 

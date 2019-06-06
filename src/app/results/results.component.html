@@ -1,5 +1,8 @@
 <app-navbar class="col-12"></app-navbar>
-<form method="post">
+<div class="container">
+<form method="post" class="row">
+
+    <div class="col-lg-4 firstPart">
     <p>
         PARTAGEZ VOS RÉSULTATS
         <br /> <br />
@@ -45,6 +48,10 @@
         <input type="checkbox" name="non">
         <label for="horns">Non</label>
     </div>
+    </div>
+    <img class="col-lg-1" height="100" src="../../assets/flecheArrow.png">
+    <img class="offset-lg-2 col-lg-1" height="100" src="../../assets/flecheArrow.png">
+    <div class="col-lg-4 firstPart">
     <div>
         <label for="culture">RÉSULTATS PAR RAPPORT A LA MOYENNE DES 5 DERNIÈRES ANNÉES <span class="red">*
             </span></label>
@@ -82,18 +89,7 @@
             <option>Agriculture biologique</option>
         </select>
     </div>
-    <div>
-        <label for="comment">Un commentaire, infos supplémentaires ?</label>
-        <input type="text" name="comment">
-    </div>
-    <div>
-        <label for="comment">VOTRE EMAIL <span class="red">* </span><span class="red">* </span></label>
-        <input type="text" name="email">
-    </div>
-    <div>
-        <label for="phone">VOTRE N° DE TELEPHONE MOBILE</label>
-        <input type="text" name="phone">
-    </div>
+    
     <div>
         <label for="culture">Quel est votre prix objectif de vente en maïs ?</label>
         <br />
@@ -123,6 +119,24 @@
             <option>350</option>
         </select>
     </div>
+    </div>
+    <div class="col-lg-12 firstPart">
+    <div>
+            <label for="comment">Un commentaire, infos supplémentaires ?</label>
+            <input type="text" name="comment">
+        </div>
+        <div>
+            <label for="comment">VOTRE EMAIL <span class="red">* </span></label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <label for="phone">VOTRE N° DE TELEPHONE MOBILE</label>
+            <input type="text" name="phone">
+        </div>
+    
     <button type="submit"> Envoyer </button>
+    </div>
+
+</div>
 </form>
 <app-footer></app-footer>
