@@ -13,6 +13,7 @@ export class PostResultsService {
 
 
   public saveResult(param: Cereals): Observable<Cereals> {
+    console.log(param);
     return this.httpClient.post<Cereals>('https://api.capgrain.com/barley-observations', param,
       {
         observe: 'body',
