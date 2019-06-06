@@ -3,6 +3,7 @@ import { Cereals } from '../class/cereals';
 import { PostResultsService } from '../services/post-results.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-results',
@@ -64,10 +65,10 @@ export class ResultsComponent implements OnInit {
 
   resultSaved() {
     let result: Cereals = {
-      specificWeight: 76,
+      specificWeight: 72,
       email: "julienauvray@gmail.com",
       phone: "+33600000000",
-      variety: "SuperCOdeur",
+      variety: "super barley",
       yield: 83.2,
       humidity: 99.5,
       yieldNotation: 5,
@@ -78,10 +79,11 @@ export class ResultsComponent implements OnInit {
       targetPrice: 120.5,
       place: "Madison square park",
       coordinates: {
-        latitude: 48.4667,
-        longitude: 1.0167
+        latitude: 48.3667,
+        longitude: 1.0130
       }
     };
+    console.log(result);
     this.postService.saveResult(result).subscribe(res => {
       let tmp: Cereals = res;
       console.log(tmp.email);
