@@ -136,9 +136,9 @@ export class MapComponent implements OnInit {
 
     for (let i = 0; i < param.length; i++) {
       // Config popup ( a mettre dans la boucle )
-      let text: string = "Variété: " + param[i].variety + "<br/>" + " Lieu : " + param[i].place + "<br/>" + "Rendement en quintaux : " +param[i].yield
-      + "<br/>" + "Poid spécifique : " + param[i].specificWeight + " Kg/hL" + "</br>" + "Humidité : " + param[i].humidity 
-      + "<br/>" + "Quantité d'azote apporté : " + param[i].nitrogenQuantityUsed + "<br/>" + "Sous quelle forme ? : " + param[i].nitrogenProductUsed + "<br/>" + "Technique Cultural : " 
+      let text: string = "<strong>Variété: </strong>" + param[i].variety + "<br/>" + "<strong> Lieu : </strong>" + param[i].place + "<br/>" + "<strong>Rendement en quintaux : </strong>" +param[i].yield
+      + "<br/>" + "<strong>Poid spécifique : </strong>" + param[i].specificWeight + " Kg/hL" + "</br>" + "<strong>Humidité : </strong>" + param[i].humidity 
+      + "<br/>" + "<strong>Quantité d'azote apporté : </strong>" + param[i].nitrogenQuantityUsed + "<br/>" + "<strong>Sous quelle forme ? : </strong>" + param[i].nitrogenProductUsed + "<br/>" + "<strong>Technique Cultural : </strong>" 
       + param[i].cultivationMethod ;
       console.log(text);
       // Ajout marqueur
