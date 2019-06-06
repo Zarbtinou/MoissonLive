@@ -136,7 +136,10 @@ export class MapComponent implements OnInit {
 
     for (let i = 0; i < param.length; i++) {
       // Config popup ( a mettre dans la boucle )
-      let text: string = param[i].variety + " / " + param[i].email;
+      let text: string = "Variété: " + param[i].variety + "<br/>" + " Lieu : " + param[i].place + "<br/>" + "Rendement en quintaux : " +param[i].yield
+      + "<br/>" + "Poid spécifique : " + param[i].specificWeight + " Kg/hL" + "</br>" + "Humidité : " + param[i].humidity 
+      + "<br/>" + "Quantité d'azote apporté : " + param[i].nitrogenQuantityUsed + "<br/>" + "Sous quelle forme ? : " + param[i].nitrogenProductUsed + "<br/>" + "Technique Cultural : " 
+      + param[i].cultivationMethod ;
       console.log(text);
       // Ajout marqueur
       if (param[i]['@type'] == "BarleyObservation") {

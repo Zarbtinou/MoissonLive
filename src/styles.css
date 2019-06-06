@@ -3,8 +3,21 @@
     src: url('assets/Montserrat-Medium.ttf');
 }
 
+@font-face{
+    font-family: "OpenSans";
+    src: url("assets/OpenSans-Regular.ttf");
+}
+
 body{
     background-image: #ececec;
     background-repeat: none;
     background-attachment: fixed;
+}
+
+h1 h2 h3 h4 h5 h6 {
+    font-family: "Montserrat";
+}
+
+p {
+    font-family: "OpenSans";
 }
