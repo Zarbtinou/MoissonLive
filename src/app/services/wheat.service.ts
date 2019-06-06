@@ -21,6 +21,7 @@ export class WheatService {
     let obs:Observable<any> = this.client.get("https://api.capgrain.com/wheat-observations");
     let treatment = (data:any) => {
       return data['hydra:member'] as Wheat[];
+
     };
 
     return obs.pipe(map(treatment));

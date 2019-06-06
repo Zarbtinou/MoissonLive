@@ -1,0 +1,24 @@
+.row{
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+p{
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 80%;
+    margin-top: 2%;
+}
+
+img{
+    object-position: 50% 50%;
+    width: 198px; 
+    height: 31px; 
+    object-fit: cover;
+}
+
+.ajust{
+    margin-top: 2.5%;
+}
