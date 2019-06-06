@@ -144,7 +144,7 @@ export class MapComponent implements OnInit {
     const myIconBarley = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
-    const myIconGrapeSeed = L.icon({
+    const myIconRapeSeed = L.icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
     });
     const myIconSunflowers = L.icon({
@@ -160,7 +160,8 @@ export class MapComponent implements OnInit {
 
     for (let i = 0; i < param.length; i++) {
 // Config popup ( a mettre dans la boucle )
-      let text: string = param[i].variety;
+      let text: string = param[i].variety+" / "+param[i].email;
+      console.log(text);
 // Ajout marqueur
       if (param[i]['@type'] == "BarleyObservation") {
 
@@ -171,8 +172,8 @@ export class MapComponent implements OnInit {
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconSunflowers }).bindPopup(text).addTo(this.map);
       } else if (param[i]['@type'] == "WheatObservation") {
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconWheat }).bindPopup(text).addTo(this.map);
-      } else if (param[i]['@type'] == "GrapeObservation") {
-        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconGrapeSeed }).bindPopup(text).addTo(this.map);
+      } else if (param[i]['@type'] == "RapeseedObservation") {
+        let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconRapeSeed }).bindPopup(text).addTo(this.map);
       }
     }
 
