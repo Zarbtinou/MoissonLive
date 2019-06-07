@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Cereals } from '../class/cereals';
-import { PostResultsService } from '../services/post-results.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { BarleyService } from '../services/barley.service';
+import { CornService } from '../services/corn.service';
+import { RapeseedService } from '../services/rapeseed.service';
+import { SunflowerService } from '../services/sunflower.service';
+import { WheatService } from '../services/wheat.service';
+import { GetLatLonService } from '../services/get-lat-lon.service';
 
 @Component({
   selector: 'app-results',
@@ -12,92 +13,60 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class ResultsComponent implements OnInit {
-  dataSaved = false;
-  recolteForm: FormGroup;
+  public cultur: string;
+  public latLon: string[];
 
+  constructor(
+    public barleyService: BarleyService,
+    public cornService: CornService,
+    public rapeseedService: RapeseedService,
+    public sunflowerService: SunflowerService,
+    public wheatService: WheatService,
+    public latLonService: GetLatLonService)
+    {
+      this.latLon = [];
+    }
 
+  ngOnInit() { }
 
-
-  // postService: PostResultsService
-
-  constructor(private postService: PostResultsService) {
-
-  }
-  ngOnInit() {
-  /*  this.recolteForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      yield: ['', [Validators.required]],
-      yieldNotation: ['', [Validators.required]],
-      nitrogenQuantityUsed: ['', [Validators.required]],
-      nitrogenProductUsed: ['', [Validators.required]],
-      cultivationMethod: ['', [Validators.required]],
-      place: ['', [Validators.required]],
-      coordinates: ['', [Validators.required]]
-    });*/
-   //Commenté pour arrété de pourrir l'api this.resultSaved();
-  }
-/*
-  onFormSubmit() {
-    this.dataSaved = false;
-    let result = this.recolteForm.value;
-    this.createResult(result);
-  }
-
-  createResult(param: Cereals) {
-    this.postService.createResult(param).subscribe(
-      param => {
-        console.log(param);
-        this.dataSaved = true;
-      },
-      err => {
-        console.log(err);
+  onSubmit(value) {
+    this.latLonService.getLatLon(value.place, value.zipCode).subscribe(
+      (result:string[]) => {
+        this.latLon=result;
       }
     );
+    let result = {
+      "specificWeight": value.specificWeight,
+      "email": value.email,
+      "phone": value.phone,
+      "variety": value.variety,
+      "yield": value.yield,
+      "humidity": value.humidity,
+      "yieldNotation": value.yieldNotation,
+      "nitrogenQuantityUsed": value.nitrogenQuantityUsed,
+      "nitrogenProductUsed": value.nitrogenProductUsed,
+      "comment": value.comment,
+      "cultivationMethod": value.cultivationMethod,
+      "targetPrice": value.targetPrice,
+      "place": value.place,
+      "coordinates": {
+        "latitude": this.latLon[0],
+        "longitude": this.latLon[1]
+      }
+    }
+    if (value.cultur == 'Orge') {
+      this.barleyService.addBarley(result).subscribe();
+    } else if (value.cultur == 'Ble') {
+      this.wheatService.addWheat(result).subscribe();
+    } else if (value.cultur == 'Colza') {
+      this.rapeseedService.addRapeseed(result).subscribe();
+    } else if (value.cultur == 'Tournesol') {
+      this.sunflowerService.addSunflower(result).subscribe();
+    } else if (value.cultur == 'Mais') {
+      this.cornService.addCorn(result).subscribe();
+    };
   }
-*/
-/*
-  get email() {
-    return this.recolteForm.get('email');
-  }
-  get yield() {
-    return this.recolteForm.get('yiel');
-  }
-*/
-  resultSaved() {
-    // let result: Cereals = {
-    //   specificWeight: 72,
-    //   email: "julienauvray@gmail.com",
-    //   phone: "+33600000000",
-    //   variety: "super barley",
-    //   yield: 83.2,
-    //   humidity: 99.5,
-    //   yieldNotation: 5,
-    //   nitrogenQuantityUsed: 5.2,
-    //   nitrogenProductUsed: "Solution for all ur probs",
-    //   comment: "This is a short commentary.",
-    //   cultivationMethod: "conventional",
-    //   targetPrice: 120.5,
-    //   place: "Madison square park",
-    //   coordinates: {
-    //     latitude: 48.3667,
-    //     longitude: 1.0130
-    //   }
-    // };
-    // console.log(result);
-    // this.postService.saveResult(result).subscribe(res => {
-    //   let tmp: Cereals = res;
-    //   console.log(tmp.email);
-    // },
-    //   (err: HttpErrorResponse) => {
-    //     if (err.error instanceof Error) {
-    //       //A client-side or network error occurred.
-    //       console.log('An error occurred:', err.error.message);
-    //     } else {
-    //       //Backend returns unsuccessful response codes such as 404, 500 etc.
-    //       console.log('Backend returned status code: ', err.status);
-    //       console.log('Response body:', err.error);
-    //     }
-    //   }
-    // );
+
 }
-}
+
+
