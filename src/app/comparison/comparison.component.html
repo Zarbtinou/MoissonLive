@@ -1,13 +1,43 @@
 <app-navbar class="col-12 fixed-top navBar"></app-navbar>
 <br/><br/><br/><br/>
 <div class="container">
+   
+<br/>
+<div class="container">
    <div class="row">
-         <h1>Comparaison de vos résultats</h1>
+         <h1>Comparaison des résultats de rendement en Orge </h1>
       <div class=" graph">
-         <google-chart #chart class="Graph" [title]="title" [type]="type" [data]="data"
-            [columnNames]="columnNames" [options]="options" [width]="width" [height]="height">
+         <google-chart #chart class="Graph" [title]="title1" [type]="type" [data]="data1"
+            [columnNames]="columnNames1" [options]="options1" [width]="width1" [height]="height1">
          </google-chart>
       </div>
    </div>
+
+   <div class="container">
+      <div class="row">
+         <div class=" graph">
+            <google-chart #chart class="Graph" [type]="type" [data]="data2"
+               [columnNames]="columnNames1" [options]="options1" [width]="width1" [height]="height1">
+            </google-chart>
+         </div>
+      </div>
+
+      <div class="row">
+         <h1>Comparaison des résultats de rendement en Colza</h1>
+      <div class=" graph">
+         <google-chart #chart class="Graph" [title]="title1" [type]="type" [data]="data3"
+            [columnNames]="columnNames1" [options]="options1" [width]="width1" [height]="height1">
+         </google-chart>
+      </div>
+   </div>
+
+   <div class="container">
+      <div class="row">
+         <div class=" graph">
+            <google-chart #chart class="Graph" [type]="type" [data]="data4"
+               [columnNames]="columnNames1" [options]="options1" [width]="width1" [height]="height1">
+            </google-chart>
+         </div>
+      </div>
 </div>
 <app-footer class="fixed-bottom"></app-footer>

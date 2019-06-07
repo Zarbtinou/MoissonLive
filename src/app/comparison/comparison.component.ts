@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GraphService } from '../graph.service';
-import { Chart } from 'chart.js';
 import { GetNeightborsYieldService } from '../services/get-neightbors-yield.service';
 
 @Component({
@@ -18,20 +16,47 @@ export class ComparisonComponent implements OnInit {
   param_long: number = 1.0167;
   param_rad: number = 1;
 
-  title = 'Comparaison des rendements au niveau global';
+  
    type = 'PieChart';
-   data = [
-      ['Mais', 20.0],
-      ['Orge', 20.0],
-      ['Tournesol', 20.0],
-      ['Blé', 20.0],
-      ['Colza', 20.0]
+   title1 = "Répartition des rendements en orge d'hiver (en qtx)";
+   
+   data1 = [
+      ['< 70', 16.3],
+      ['70-79', 41.2],
+      ['80-89', 24.0],
+      ['90-99', 15.4],
+      ['> 100', 3.0]
    ];
-   columnNames = ['Browser', 'Percentage'];
-   options = {
+   data2 = [
+    ['Inferieur à la moyenne', 33.7],
+    ['Moyen', 41.5],
+    ['Nettement inferieur à la moyenne', 8.6],
+    ['Nettement superieur à la moyenne', 2.0],
+    ['Superieur à la moyenne', 14.1]
+ ];
+
+ data3 = [
+  ['< 30', 26.1],
+  ['30-35', 35.7],
+  ['35-40', 22.6],
+  ['40-45', 13.0],
+  ['> 145', 2.6]
+];
+
+data4 = [
+  ['Inferieur à la moyenne', 41.5],
+  ['Moyen', 28.0],
+  ['Nettement inferieur à la moyenne', 22.0],
+  ['Nettement superieur à la moyenne', 1.7],
+  ['Superieur à la moyenne', 6.8]
+];
+
+ 
+   columnNames1 = ['Browser', 'Percentage'];
+   options1 = {
    };
-   width = 800;
-   height = 750;
+   width1 = 800;
+   height1 = 600;
 
 
   constructor(serviceYield: GetNeightborsYieldService) {
