@@ -103,7 +103,7 @@ export class MapComponent implements OnInit {
         this.generateMap(tmp);
       }
     );
-    this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 15);
+    this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 4);
 
   }
 

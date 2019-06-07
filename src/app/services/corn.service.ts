@@ -36,3 +36,5 @@ export class CornService {
     return this.client.post<any>("https://api.capgrain.com/corn-observations", param_form, options);
   }
 }
+
+
