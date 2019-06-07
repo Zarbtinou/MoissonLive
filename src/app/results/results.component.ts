@@ -14,18 +14,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ResultsComponent implements OnInit {
   dataSaved = false;
   recolteForm: FormGroup;
-  allResults$: Observable<Cereals[]>
 
 
 
 
   // postService: PostResultsService
 
-  constructor(private formBuilder: FormBuilder, private postService: PostResultsService) {
+  constructor(private postService: PostResultsService) {
 
   }
   ngOnInit() {
-    this.recolteForm = this.formBuilder.group({
+  /*  this.recolteForm = this.formBuilder.group({
       email: ['', [Validators.required]],
       yield: ['', [Validators.required]],
       yieldNotation: ['', [Validators.required]],
@@ -34,18 +33,18 @@ export class ResultsComponent implements OnInit {
       cultivationMethod: ['', [Validators.required]],
       place: ['', [Validators.required]],
       coordinates: ['', [Validators.required]]
-    });
-    this.resultSaved();
+    });*/
+   //Commenté pour arrété de pourrir l'api this.resultSaved();
   }
-
+/*
   onFormSubmit() {
     this.dataSaved = false;
     let result = this.recolteForm.value;
-    this.createPost(result);
+    this.createResult(result);
   }
 
-  createPost(param: Cereals) {
-    this.postService.saveResult(param).subscribe(
+  createResult(param: Cereals) {
+    this.postService.createResult(param).subscribe(
       param => {
         console.log(param);
         this.dataSaved = true;
@@ -55,14 +54,15 @@ export class ResultsComponent implements OnInit {
       }
     );
   }
-
+*/
+/*
   get email() {
     return this.recolteForm.get('email');
   }
   get yield() {
     return this.recolteForm.get('yiel');
   }
-
+*/
   resultSaved() {
     let result: Cereals = {
       specificWeight: 72,
@@ -83,10 +83,11 @@ export class ResultsComponent implements OnInit {
         longitude: 1.0130
       }
     };
-    console.log(result);
-    this.postService.saveResult(result).subscribe(res => {
-      let tmp: Cereals = res;
+
+    this.postService.postResult(result).subscribe(res => {
+      let tmp: Cereals = res.body;
       console.log(tmp.email);
+      console.log(res.headers.get('Content-Type'));
     },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -100,4 +101,5 @@ export class ResultsComponent implements OnInit {
       }
     );
   }
+
 }
