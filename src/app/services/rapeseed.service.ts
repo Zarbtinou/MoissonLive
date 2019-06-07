@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Rapeseed } from '../class/rapeseed' ;
+import { Cereals } from '../class/cereals';
 
 
 @Injectable({
@@ -25,4 +26,13 @@ export class RapeseedService {
 
     return obs.pipe(map(treatment));
    }
+
+   public addRapeseed(param_form): Observable<Cereals> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+    let options = {
+      headers: httpHeaders
+    };
+    return this.client.post<Cereals>("https://api.capgrain.com/rapeseed-observations", param_form, options);
+  }
 }

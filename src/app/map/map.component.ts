@@ -149,6 +149,7 @@ export class MapComponent implements OnInit {
       if (param[i]['@type'] == "BarleyObservation") {
 
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconBarley }).bindPopup(text).addTo(this.map);
+        console.log(param[i].variety);
       } else if (param[i]['@type'] == "CornObservation") {
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconCorn }).bindPopup(text).addTo(this.map);
       } else if (param[i]['@type'] == "SunflowerObservation") {
