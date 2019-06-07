@@ -104,7 +104,7 @@ export class MapComponent implements OnInit {
       }
     );
     this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 15);
-    
+
   }
 
 
@@ -117,7 +117,7 @@ export class MapComponent implements OnInit {
       attribution: 'Moisson Live'
     }).addTo(this.map);
 
-    
+
 
     // Configuration icone marqueur
     const myIconBarley = L.icon({
@@ -147,7 +147,6 @@ export class MapComponent implements OnInit {
 
       // Ajout marqueur
       if (param[i]['@type'] == "BarleyObservation") {
-
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconBarley }).bindPopup(text).addTo(this.map);
       } else if (param[i]['@type'] == "CornObservation") {
         let test = L.marker([param[i].coordinates.latitude, param[i].coordinates.longitude], { icon: myIconCorn }).bindPopup(text).addTo(this.map);
@@ -160,7 +159,7 @@ export class MapComponent implements OnInit {
       }
     }
     this.locateButton(this.map);
-    
+
   };
 
   locateButton(param_map) {
@@ -186,7 +185,7 @@ export class MapComponent implements OnInit {
     param_map.on('locationerror', onLocationError);
   }
 
-  
+
 
 }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cereals } from '../class/cereals';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,16 +8,25 @@ import { Observable } from 'rxjs';
 })
 export class PostResultsService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient) {}
+
+
+  public createResult(param: Cereals): Observable<Cereals> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+    let options = {
+      headers: httpHeaders
+    };
+    return this.httpClient.post<Cereals>('https://api.capgrain.com/barley-observations', param, options);
   }
-
-
-  public saveResult(param: Cereals): Observable<Cereals> {
-    console.log(param);
+  public postResult(param: Cereals): Observable<HttpResponse<Cereals>> {
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     return this.httpClient.post<Cereals>('https://api.capgrain.com/barley-observations', param,
       {
-        observe: 'body',
-        responseType: 'json'
+        headers: httpHeaders,
+        observe: 'response'
       }
     );
   }

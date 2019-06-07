@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Graph } from './graph';
 
 
 @Injectable({
@@ -8,11 +10,20 @@ import { map } from'rxjs/operators';
 })
 export class GraphService {
 
-  constructor(private _http: HttpClient) { }
+  private client:HttpClient;
+  constructor(http: HttpClient) {
+    this.client = http;
+   }
 
 
-  dailyForecast() {
-    return this._http.get("http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=a0682121a87094e4dc734279be57687c")
-      .pipe(map((result: any) => result));
-  }
+  public dailyForecast():Observable<Graph[]> {
+    let obs:Observable<any> = this.client.get('');
+
+    let treatment = (data:any) => {
+      return data['hydra:member'] as Graph;
+    };
+
+    return obs.pipe( map(treatment) );
+}
+
 }
