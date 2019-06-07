@@ -1,149 +1,117 @@
-<app-navbar class="col-12 navBar"></app-navbar>
+<app-navbar class="fixed-top col-12 navBar"></app-navbar>
+<br /><br /><br /><br /><br />
 <h1 class="title">Partagez vos résultats de récolte</h1>
 <legend>Participez à la carte de la moisson en vous inscrivant ci-dessous.</legend>
-<div class="row custom-row">
-
-  <section>
-    <h2 class="mt-4">Ajouter des résultats</h2>
-  <form class="container"
-       method="post" #Form="ngForm"(ngSubmit)="onSubmit(Form.value)">
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Type de culture<span class="required">*</span></label>
-      <select class="col-10  m-auto large" type="text" name="cultur" required="required" [(ngModel)]="cultur">
-        <option value="" selected >Type de culture</option>
-        <option value="Orge">Orge</option>
-        <option value="Mais">Maïs</option>
-        <option value="Colza">Colza</option>
-        <option value="Tournesol">Tournesol</option>
-        <option value="Ble">Blé</option>
-      </select>
-    </div>
-    <div *ngIf="cultur !== 'Mais'" class="row element-input">
-      <label class="col-12 m-auto title">Poids spécifique<span class="required">*</span></label>
-      <input class="col-10  m-auto large" type="number" name="specificWeight" required="required" [(ngModel)]="specificWeight"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Email :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="email" required="required" [(ngModel)]="email"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Téléphone :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="phone" required="required" [(ngModel)]="phone"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Variété :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="variety" required="required" [(ngModel)]="variety"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Rendement en Quintaux :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="number" name="yield" required="required" [(ngModel)]="yield"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Humidité :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="number" name="humidity" required="required" [(ngModel)]="humidity"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Résultats par rapport à la moyenne des 5 dernières années :<span class="required">*</span></label>
-      <select class="col-10 m-auto large" type="number" name="yieldNotation" required="required" [(ngModel)]="yieldNotation">
-        <option value=""></option>
-        <option value="1">Nettement inférieur à la moyenne</option>
-        <option value="2">Inférieur à la moyenne</option>
-        <option value="3">Moyen</option>
-        <option value="4">Supérieur à la moyenne</option>
-        <option value="5">Nettement supérieur à la moyenne</option>
-      </select>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Quantité d'azote apportée ?(en unités)<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="number" name="nitrogenQuantityUsed" required="required" [(ngModel)]="nitrogenQuantityUsed"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Quel type ?<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="nitrogenProductUsed" required="required" [(ngModel)]="nitrogenProductUsed"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Commentaire ?<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="comment" required="required" [(ngModel)]="comment"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Technique culturale :<span class="required">*</span></label>
-      <select class="col-10 m-auto large" type="text" name="cultivationMethod" required="required" [(ngModel)]="cultivationMethod">
-        <option value="conventional">Conventionnelle</option>
-        <option value="simplified cultivation methods">simplified cultivation methods</option>
-        <option value="organic farming">Agriculture bio</option>
-      </select>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Prix objectif de vente :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="number" name="targetPrice" required="required" [(ngModel)]="targetPrice"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Commune :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="place" required="required" [(ngModel)]="place"/>
-    </div>
-    <div class="row element-input">
-      <label class="col-12 m-auto title">Code postal :<span class="required">*</span></label>
-      <input class="col-10 m-auto large" type="text" name="zipCode" required="required" pattern="[0-9*]" [(ngModel)]="zipCode"/>
-    </div>
-    <div class="submit submitButton"><input type="submit" value="Envoyer"/></div>
-  </form>
-  </section>
-
-<app-footer></app-footer>
+<div class="required">* Obligatoire</div>
 
 
-</div>
+<section class="container">
 
-<<<<<<< HEAD
-<p *ngIf="dataSaved && resultsForm.pristine" ngClass="success">
-    results created successfully.
-</p>
-<form >
-    <table>
-        <tr>
-            <td>Title: </td>
-            <td>
-                <input formControlName="title"[formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
-                <div *ngIf="title.dirty && title.errors" class="error">
-                    <div *ngIf="title.errors.required">
-                        Title required.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Category: </td>
-            <td>
-                <input formControlName="category">
-                <div *ngIf="category.dirty && category.errors" class="error">
-                    <div *ngIf="category.errors.required">
-                        Category required.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Writer: </td>
-            <td>
-                <input formControlName="writer">
-                <div *ngIf="writer.dirty && writer.errors" class="error">
-                    <div *ngIf="writer.errors.required">
-                        Writer required.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button [disabled]="resultsForm.invalid">Submit</button>
-            </td>
-        </tr>
-    </table>
-</form>
-<h3>results Details</h3>
-<p *ngFor="let results of allresultss$ | async">
-    {{results.id}} | {{results.title}} |
-    {{results.category}} | {{results.writer}}
-</p>
-=======
->>>>>>> 68a8ea3bb23122245008b7f58a8a04bca13c318e
+    <form class="row" method="post" #Form="ngForm" (ngSubmit)="onSubmit(Form.value)">
+
+        <div class="col-lg-5 partOneForm">
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Type de culture<span class="required">*</span></label>
+                <select class="col-10  m-auto large" type="text" name="cultur" required="required" [(ngModel)]="cultur">
+
+                    <option value="Orge">Orge</option>
+                    <option value="Mais">Maïs</option>
+                    <option value="Colza">Colza</option>
+                    <option value="Tournesol">Tournesol</option>
+                    <option value="Ble">Blé</option>
+                </select>
+            </div>
+            <div *ngIf="cultur !== 'Mais'" class="row element-input">
+                <label class="col-12 m-auto title">Poids spécifique</label>
+                <input class="col-10  m-auto large" type="number" name="specificWeight" required="required"
+                    [(ngModel)]="specificWeight" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Email :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="email" required="required" [(ngModel)]="email" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Téléphone :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="phone" required="required" [(ngModel)]="phone" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Variété :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="variety" required="required"
+                    [(ngModel)]="variety" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Rendement en Quintaux :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="number" name="yield" required="required" [(ngModel)]="yield" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Humidité :</label>
+                <input class="col-10 m-auto large" type="number" name="humidity" required="required"
+                    [(ngModel)]="humidity" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Résultats par rapport à la moyenne des 5 dernières années :</label>
+                <select class="col-10 m-auto large" type="number" name="yieldNotation" required="required"
+                    [(ngModel)]="yieldNotation">
+                    
+                    <option value="1">Nettement inférieur à la moyenne</option>
+                    <option value="2">Inférieur à la moyenne</option>
+                    <option value="3">Moyen</option>
+                    <option value="4">Supérieur à la moyenne</option>
+                    <option value="5">Nettement supérieur à la moyenne</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="img col-1">
+            <img src="../../assets/flecheArrow.png" height="50" class="imgs">
+
+        </div>
+        <div class="img col-1">
+            <img src="../../assets/flecheArrow.png" height="50" class="imgs">
+
+        </div> -->
+        <div class="offset-lg-2 col-lg-5 partTwo">
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Quantité d'azote apportée ?(en unités)</label>
+                <input class="col-10 m-auto large" type="number" name="nitrogenQuantityUsed" required="required"
+                    [(ngModel)]="nitrogenQuantityUsed" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Quel type ?<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="nitrogenProductUsed" required="required"
+                    [(ngModel)]="nitrogenProductUsed" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Commentaire ?</label>
+                <input class="col-10 m-auto large" type="text" name="comment" required="required"
+                    [(ngModel)]="comment" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Technique culturale :</label>
+                <select class="col-10 m-auto large" type="text" name="cultivationMethod" required="required"
+                    [(ngModel)]="cultivationMethod">
+                    <option value="conventional">Conventionnelle</option>
+                    <option value="simplified cultivation methods">simplified cultivation methods</option>
+                    <option value="organic farming">Agriculture bio</option>
+                </select>
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Prix objectif de vente :</label>
+                <input class="col-10 m-auto large" type="number" name="targetPrice" required="required"
+                    [(ngModel)]="targetPrice" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Commune :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="place" required="required" [(ngModel)]="place" />
+            </div>
+            <div class="row element-input">
+                <label class="col-12 m-auto title">Code postal :<span class="required">*</span></label>
+                <input class="col-10 m-auto large" type="text" name="zipCode" required="required" pattern="[0-9*]"
+                    [(ngModel)]="zipCode" />
+            </div>
+        </div>
+        <div class="col-5"></div>
+        <button class="col-lg-2 submit submitButton"type="submit" value="Envoyer">Envoyer</button>
+    </form>
+</section>
+
+<app-footer class="fixed-bottom footer"></app-footer>
