@@ -1,7 +1,13 @@
 <app-navbar class="col-12 navBar"></app-navbar>
-<div class="sign-up offset-3 col-6">
-    <p>Recevez par mail tous les résultats : Rendements, qualités, apports d'azote, ... par culture et par secteur.</p>
-    <input type="text" name="mail" value="Adresse e-mail" class="col-12">
-    <div><button class="col-12">S'enregistrer pour recevoir les résultats</button></div>
-</div>
+
+<google-chart #chart
+   [title]="title"
+   [type]="type"
+   [data]="data"
+   [columnNames]="columnNames"
+   [options]="options"
+   [width]="width"
+   [height]="height">
+</google-chart>
+
 <app-footer></app-footer>

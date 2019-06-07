@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { ReactiveFormsModule } from '@angular/forms';
+import { GoogleChartsModule } from 'angular-google-charts';
 
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,7 +13,6 @@ import { MapComponent } from './map/map.component';
 import { ResultsComponent } from './results/results.component';
 import { ComparisonComponent } from './comparison/comparison.component';
 import { FooterComponent } from './footer/footer.component';
-
 
 @NgModule({
   declarations: [
@@ -29,13 +27,13 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    GoogleChartsModule,
     RouterModule.forRoot(ROUTES),
-  ],
-  providers: [
     
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

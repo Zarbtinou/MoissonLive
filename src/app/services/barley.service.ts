@@ -26,12 +26,12 @@ export class BarleyService {
     return obs.pipe( map(treatment) );
   }
 
-  public addBarley(param_form): Observable<Cereals> {
+  public addBarley(param_form): Observable<any> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json');
     let options = {
       headers: httpHeaders
     };
-    return this.client.post<Cereals>("https://api.capgrain.com/barley-observations", param_form, options);
+    return this.client.post<any>("https://api.capgrain.com/barley-observations", param_form, options);
   }
 }
