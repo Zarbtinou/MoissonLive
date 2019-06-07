@@ -1,26 +1,19 @@
-.firstPart{
+.form {
     text-align: center;
-    width : 450px;
-    padding : 1.5em;
-    border : 2px solid #CCC;
-    border-radius : 3em;
-}
-  
-img {
-    margin: auto;
 }
 
-input{
-    width : 300px;
-    box-sizing : border-box;
-    border : 1px solid #999;
-    margin-bottom : 2em;
+.title {
+    text-align: center;
 }
 
-select{
-    margin-bottom: 2em;
+legend {
+    text-align: center;
 }
-
 .red{
   color: #e4454d;
+}
+
+.navBar {
+    padding: 0;
+    margin: 0;
 }

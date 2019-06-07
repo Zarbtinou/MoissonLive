@@ -1,142 +1,134 @@
-<app-navbar class="col-12"></app-navbar>
-<div class="container">
-<form method="post" class="row">
+<app-navbar class="col-12 navBar"></app-navbar>
+<h1 class="title">Partagez vos résultats de récolte</h1>
+<legend>Participez à la carte de la moisson en vous inscrivant ci-dessous.</legend>
+<div class="row custom-row">
 
-    <div class="col-lg-4 firstPart">
-    <p>
-        PARTAGEZ VOS RÉSULTATS
-        <br /> <br />
-        Participez à la carte de la moisson en vous inscrivant ci-dessous.
-    </p>
-    <div class="red"> * Obligatoire</div>
-    <br />
-    <div>
-        <label for="postal">CODE POSTAL (ex: 28200) <span class="red">* </span></label>
-        <input type="text" name="postal">
-    </div>
-    <div>
-        <label for="commune">COMMUNE (ex: CHATEAUDUN) <span class="red">* </span></label>
-        <input type="text" name="commune">
-    </div>
-    <div>
-        <label for="culture">CULTURE <span class="red">* </span></label>
-        <br />
-        <select>
-            <option>Sélectionner</option>
-            <option>Maïs</option>
-            <option>Tournesol</option>
-        </select>
-    </div>
-    <div>
-        <label for="variété">VARIETE</label>
-        <br />
-        <input type="text" name="variété">
-    </div>
-    <div>
-        <label for="rendement">RENDEMENT EN QUINTAUX <span class="red">* </span></label>
-        <input type="text" name="rendement">
-    </div>
-    <div>
-        <label for="humidité">HUMIDITE <span class="red">* </span></label>
-        <br />
-        <input type="text" name="humidité">
-    </div>
-    <div>
-        <label for="irrigué">MAÏS IRRIGUE</label>
-        <input type="checkbox" name="yes">
-        <label for="scales">Oui</label>
-        <input type="checkbox" name="non">
-        <label for="horns">Non</label>
-    </div>
-    </div>
-    <img class="col-lg-1" height="100" src="../../assets/flecheArrow.png">
-    <img class="offset-lg-2 col-lg-1" height="100" src="../../assets/flecheArrow.png">
-    <div class="col-lg-4 firstPart">
-    <div>
-        <label for="culture">RÉSULTATS PAR RAPPORT A LA MOYENNE DES 5 DERNIÈRES ANNÉES <span class="red">*
-            </span></label>
-        <br />
-        <select>
-            <option>Nettement inférieur à la moyenne</option>
-            <option>Inférieur à la moyenne</option>
-            <option>Moyen</option>
-            <option>Supérieur à la moyenne</option>
-            <option>Nettement supérieur à la moyenne</option>
-        </select>
-    </div>
-    <div>
-        <label for="rendement">QUANTITE D'AZOTE APPORTEE ? (en unités) <span class="red">* </span></label>
-        <input type="text" name="azote">
-    </div>
-    <div>
-        <label for="irrigué">SOUS QUELLE FORME ? *</label>
-        <input type="checkbox">
-        <label for="scales">Solution Azotée</label>
-        <input type="checkbox">
-        <label for="scales">Ammonitrate</label>
-        <input type="checkbox">
-        <label for="scales">Urée 46</label>
-        <input type="checkbox">
-        <label for="scales">Autre</label>
-        <input type="text" name="autre">
-    </div>
-    <div>
-        <label for="culture">TECHNIQUE CULTURALE <span class="red">* </span></label>
-        <br />
-        <select>
-            <option>Conventionnelle</option>
-            <option>TCS</option>
-            <option>Agriculture biologique</option>
-        </select>
-    </div>
-    
-    <div>
-        <label for="culture">Quel est votre prix objectif de vente en maïs ?</label>
-        <br />
-        <select>
-            <option>150</option>
-            <option>160</option>
-            <option>170</option>
-            <option>180</option>
-            <option>190</option>
-            <option>200</option>
-            <option>210</option>
-            <option>220</option>
-        </select>
-    </div>
-    <div>
-        <label for="culture">Quel est votre prix objectif de vente en tournesol ?</label>
-        <br />
-        <select>
-            <option>270</option>
-            <option>280</option>
-            <option>290</option>
-            <option>300</option>
-            <option>310</option>
-            <option>320</option>
-            <option>330</option>
-            <option>340</option>
-            <option>350</option>
-        </select>
-    </div>
-    </div>
-    <div class="col-lg-12 firstPart">
-    <div>
-            <label for="comment">Un commentaire, infos supplémentaires ?</label>
-            <input type="text" name="comment">
-        </div>
-        <div>
-            <label for="comment">VOTRE EMAIL <span class="red">* </span></label>
-            <input type="text" name="email">
-        </div>
-        <div>
-            <label for="phone">VOTRE N° DE TELEPHONE MOBILE</label>
-            <input type="text" name="phone">
-        </div>
-    
-    <button type="submit"> Envoyer </button>
-    </div>
+    <form class="form-horizontal form" [formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
+        <fieldset>
+            <div class="offset-1 col-sm-5 custom-container ">
+                <p *ngIf="dataSaved && resultsForm.pristine" ngClass="success">
+                    results created successfully.
+                </p>
+
+                <div class="form-group">
+                    <label for="inputCP" class="col-12">Code Postal :</label>
+                    <input type="number" name="inputCP-result" placeholder="    Ex : 28400" formControlName="inputCP">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCommune" class="col-12">Commune :</label>
+                    <input type="text" name="inputCommune-result" placeholder="    Ex : CHATEAUDUN"
+                        formControlName="inputCommune">
+                </div>
+
+                <div class="form-group">
+                    <label for="selectCultur" class="col-12">Culture :</label>
+                    <select name="selectCultur-result" formControlName="selectCultur">
+                        <option value="mais">Mais</option>
+                        <option value="tournesol">Tournesol</option>
+                        <option value="blé">Blé</option>
+                        <option value="orge">Orge</option>
+                        <option value="colza">Colza</option>
+                    </select>
+                </div>
+            </div>
+            <div class="offset-1 col-sm-5 custom-container ">
+                <div class="form-group">
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputRendQuint" class="col-12">Rendement en quintaux :</label>
+                    <input type="number" name="inputRendQuint-result" placeholder="    Ex: 32">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputVariety" class="col-12">Variété :</label>
+                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                </div>
+
+            </div>
+
+            <!--- Terms and conditions Block --->
+            <div class="form-group checkbox">
+                <label>
+                    <input type="checkbox"> Confirm that you've read the Terms and
+                    Conditions
+                </label>
+            </div>
+
+            <!--- Buttons Block --->
+            <div class="form-group">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
 
 
-</form>
 <app-footer></app-footer>
+
+
+
+<p *ngIf="dataSaved && resultsForm.pristine" ngClass="success">
+    results created successfully.
+</p>
+<form [formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
+    <table>
+        <tr>
+            <td>Title: </td>
+            <td>
+                <input formControlName="title">
+                <div *ngIf="title.dirty && title.errors" class="error">
+                    <div *ngIf="title.errors.required">
+                        Title required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <td>
+                <input formControlName="category">
+                <div *ngIf="category.dirty && category.errors" class="error">
+                    <div *ngIf="category.errors.required">
+                        Category required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Writer: </td>
+            <td>
+                <input formControlName="writer">
+                <div *ngIf="writer.dirty && writer.errors" class="error">
+                    <div *ngIf="writer.errors.required">
+                        Writer required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button [disabled]="resultsForm.invalid">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<h3>results Details</h3>
+<p *ngFor="let results of allresultss$ | async">
+    {{results.id}} | {{results.title}} |
+    {{results.category}} | {{results.writer}}
+</p>

@@ -103,7 +103,8 @@ export class MapComponent implements OnInit {
         this.generateMap(tmp);
       }
     );
-    this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 1);
+    this.map = L.map('frugalmap').setView([47.6311634, 3.0599573], 15);
+    
   }
 
 
@@ -112,9 +113,11 @@ export class MapComponent implements OnInit {
   public generateMap(param) {
 
     // Fonds de carte
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { noWrap:true,
       attribution: 'Moisson Live'
     }).addTo(this.map);
+
+    
 
     // Configuration icone marqueur
     const myIconBarley = L.icon({
@@ -141,6 +144,7 @@ export class MapComponent implements OnInit {
       + "<br/>" + "<strong>Quantité d'azote apporté : </strong>" + param[i].nitrogenQuantityUsed + "<br/>" + "<strong>Sous quelle forme ? : </strong>" + param[i].nitrogenProductUsed + "<br/>" + "<strong>Technique Cultural : </strong>"
       + param[i].cultivationMethod ;
 
+
       // Ajout marqueur
       if (param[i]['@type'] == "BarleyObservation") {
 
@@ -157,6 +161,7 @@ export class MapComponent implements OnInit {
       }
     }
     this.locateButton(this.map);
+    
   };
 
   locateButton(param_map) {
@@ -181,6 +186,8 @@ export class MapComponent implements OnInit {
     }
     param_map.on('locationerror', onLocationError);
   }
+
+  
 
 }
 
