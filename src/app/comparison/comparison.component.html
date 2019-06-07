@@ -1,13 +1,13 @@
 <app-navbar class="col-12 fixed-top navBar"></app-navbar>
-
-<google-chart #chart class="Graph"
-   [title]="title"
-   [type]="type"
-   [data]="data"
-   [columnNames]="columnNames"
-   [options]="options"
-   [width]="width"
-   [height]="height">
-</google-chart>
-
+<br/><br/><br/><br/>
+<div class="container">
+   <div class="row">
+         <h1>Comparaison de vos résultats</h1>
+      <div class=" graph">
+         <google-chart #chart class="Graph" [title]="title" [type]="type" [data]="data"
+            [columnNames]="columnNames" [options]="options" [width]="width" [height]="height">
+         </google-chart>
+      </div>
+   </div>
+</div>
 <app-footer class="fixed-bottom"></app-footer>

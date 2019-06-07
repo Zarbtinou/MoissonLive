@@ -1,5 +1,29 @@
+.graph{
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  /* width: 100vw; */
+}
+h1{
+  font-weight: bold;
+}
+
+
+
+.row {
+  justify-content: center;
+}
+
 
 .navBar {
     padding: 0;
     margin: 0;
   }
+
+  @media screen and (max-width: 1049px){
+    
+.Graph {
+  height: 650px;
+  width: 400px;
+}
+}
