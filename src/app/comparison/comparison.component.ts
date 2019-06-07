@@ -8,21 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComparisonComponent implements OnInit {
 
-  title = 'Browser market shares at a specific website, 2014';
+  title = 'Comparaison des rendements au niveau global';
    type = 'PieChart';
    data = [
-      ['Firefox', 45.0],
-      ['IE', 26.8],
-      ['Chrome', 12.8],
-      ['Safari', 8.5],
-      ['Opera', 6.2],
-      ['Others', 0.7] 
+      ['Mais', 20.0],
+      ['Orge', 20.0],
+      ['Tournesol', 20.0],
+      ['Blé', 20.0],
+      ['Colza', 20.0]
    ];
    columnNames = ['Browser', 'Percentage'];
    options = {    
    };
-   width = 550;
-   height = 400;
+   width = 800;
+   height = 750;
   
 
   constructor() { }
