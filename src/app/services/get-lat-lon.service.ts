@@ -15,7 +15,6 @@ export class GetLatLonService {
 
     let obs: Observable<any> = this.client.get("https://geo.api.gouv.fr/communes?codePostal=" + param_dep + "&nom=" + param_commune + "&fields=centre&format=json&geometry=centre");
     let treatment = (data: any) => {
-      console.log(data[0].centre.coordinates);
       return data[0].centre.coordinates;
     };
 

@@ -33,6 +33,7 @@ export class ResultsComponent implements OnInit {
     this.latLonService.getLatLon(value.place, value.zipCode).subscribe(
       (result:string[]) => {
         this.latLon=result;
+        console.log("************************"+this.latLon);
       }
     );
     let result = {
@@ -65,6 +66,7 @@ export class ResultsComponent implements OnInit {
     } else if (value.cultur == 'Mais') {
       this.cornService.addCorn(result).subscribe();
     };
+    console.log(result);
   }
 
 }
