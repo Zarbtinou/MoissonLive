@@ -16,14 +16,14 @@ export class GraphService {
    }
 
 
-  public dailyForecast():Observable<Graph[]> {
-    let obs:Observable<any> = this.client.get('');
+  //public dailyForecast():Observable<Graph[]> {
+    //let obs:Observable<any> = this.client.get('');
 
-    let treatment = (data:any) => {
-      return data['hydra:member'] as Graph;
+    //let treatment = (data:any) => {
+     // return data['hydra:member'] as Graph;
     };
 
-    return obs.pipe( map(treatment) );
-}
+    //return obs.pipe( map(treatment) );
+    
 
-}
+
