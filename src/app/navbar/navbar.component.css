@@ -5,6 +5,12 @@
 
 .navbar{
     background-color: #565656;
+    
+}
+
+a {
+    color: white;
+    font-weight: bold;
 }
 
 img{

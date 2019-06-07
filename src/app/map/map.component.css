@@ -1,18 +1,31 @@
 #frugalmap {
-  height: 100vh;
+  height: 75vh;
   width: 100% ;
+  border-style: double;
+    border-width: 5px;
+    border-radius: 10px;
+    border-color: #2a2a2a;
 }
 
+button {
+  text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #2a2a2a;
+    background-color: #5a9449;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
 
-
-button{
+/* button{
   width: 2.1em;
   height: 2em;
   border: 2px solid #a1a1a1;
   border-radius: 5%;
   background: url("https://cdn.pixabay.com/photo/2017/01/10/03/54/icon-1968240_960_720.png") ;
   background-size: 100%;
-}
+} */
 
 
 .navBar {
@@ -25,4 +38,13 @@ button{
   margin-left: 0.7%;
   margin-bottom: 1%;
   margin-top: 1%;
+}
+
+@media screen and (max-width: 1049px){
+  .footer {
+      position: relative;
+      width: 100vw;
+      
+  }
+  
 }
