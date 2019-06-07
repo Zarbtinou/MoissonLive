@@ -16,9 +16,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputCommune" class="col-12">Commune :</label>
-                    <input type="text" name="inputCommune-result" placeholder="    Ex : CHATEAUDUN"
-                        formControlName="inputCommune">
+                    <label for="inputEmail" class="col-12">Email :</label>
+                    <input type="email" name="inputEmail-result" placeholder="    Ex : johndoe@wow.com"
+                        formControlName="inputEmail">
                 </div>
 
                 <div class="form-group">
@@ -44,8 +44,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputVariety" class="col-12">Variété :</label>
-                    <input type="text" name="inputVariety-result" placeholder="    Variété...">
+                    <label for="inputHumidity" class="col-12">Humidité :</label>
+                    <input type="text" name="inputHumidity-result" placeholder="    Humidité...">
                 </div>
 
                 <div class="form-group">
@@ -85,12 +85,12 @@
 <p *ngIf="dataSaved && resultsForm.pristine" ngClass="success">
     results created successfully.
 </p>
-<form [formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
+<form >
     <table>
         <tr>
             <td>Title: </td>
             <td>
-                <input formControlName="title">
+                <input formControlName="title"[formGroup]="resultsForm" (ngSubmit)="onFormSubmit()">
                 <div *ngIf="title.dirty && title.errors" class="error">
                     <div *ngIf="title.errors.required">
                         Title required.
