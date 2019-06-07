@@ -27,12 +27,12 @@ export class CornService {
     return obs.pipe(map(treatment));
    }
 
-   public addCorn(param_form): Observable<Cereals> {
+   public addCorn(param_form:any): Observable<any> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json');
     let options = {
       headers: httpHeaders
     };
-    return this.client.post<Cereals>("https://api.capgrain.com/corn-observations", param_form);
+    return this.client.post<any>("https://api.capgrain.com/corn-observations", param_form, options);
   }
 }

@@ -30,12 +30,14 @@ export class ResultsComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit(value) {
+
     this.latLonService.getLatLon(value.place, value.zipCode).subscribe(
       (result:string[]) => {
         this.latLon=result;
-        console.log("************************"+this.latLon);
+        console.log("************************"+this.latLon[0])
       }
     );
+
     let result = {
       "specificWeight": value.specificWeight,
       "email": value.email,
@@ -43,16 +45,16 @@ export class ResultsComponent implements OnInit {
       "variety": value.variety,
       "yield": value.yield,
       "humidity": value.humidity,
-      "yieldNotation": value.yieldNotation,
+      "yieldNotation": parseInt(value.yieldNotation),
       "nitrogenQuantityUsed": value.nitrogenQuantityUsed,
       "nitrogenProductUsed": value.nitrogenProductUsed,
       "comment": value.comment,
       "cultivationMethod": value.cultivationMethod,
-      "targetPrice": value.targetPrice,
+      "targetPrice": value.price,
       "place": value.place,
       "coordinates": {
-        "latitude": this.latLon[0],
-        "longitude": this.latLon[1]
+        "latitude": this.latLon[1],
+        "longitude": this.latLon[0]
       }
     }
     if (value.cultur == 'Orge') {
